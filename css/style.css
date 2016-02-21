@@ -19,6 +19,7 @@
 
 #canvasWrap {
     text-align: center;
+    top: 10px;
 }
 
 #canvasWrap:focus {
