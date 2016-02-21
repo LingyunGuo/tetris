@@ -109,7 +109,7 @@ $(document).ready(function () {
             ctx.fillRect(0, 0, 300, 600);
             $('.btnBlock button').html("Restart");
             $('.btnBlock h3 #score').html(totalScore);
-            $('.btnBlock').css("display","block");
+            $('.btnBlock').css("display", "block");
         });
     }
     function createTetromino() {
@@ -177,6 +177,7 @@ $(document).ready(function () {
         else {
             stopGame();
             $('.alertBox h3').html('Some error occur during rotation.');
+            $('.alertBox').css("display", "block");
         }
         drawTetromino(currentType.tetrominoType);
         hitBotton();
@@ -370,6 +371,7 @@ $(document).ready(function () {
         if (num > 4) {
             stopGame();
             $('.alertBox h3').html('Some error occur during score calculation.');
+            $('.alertBox').css("display", "block");
         }
         else {
             totalScore += rowScore[num - 1];
