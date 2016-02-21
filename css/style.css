@@ -6,6 +6,7 @@ h5 {
 
 i {
     font-size: 20px!important;
+    display: inline;
 }
 
 #tetris {
@@ -48,6 +49,7 @@ i {
 
 #startGameBtn {
     display: inline;
+    width: 150px;
 }
 
 #score2Wrap {
@@ -112,7 +114,8 @@ i {
 #mobileClick_up:focus,
 #mobileClick_down:focus,
 #mobileClick_space:focus {
-    padding-top: 4px;
+    padding: 4px 0px;
+    text-align: center;
     height: 30px;
     position: relative;
     top: 15px;
