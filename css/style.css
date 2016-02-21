@@ -64,3 +64,13 @@
 .alertBox h3 {
     margin: 0px;
 }
+
+@media (max-height: 599px) {
+    #score2Wrap {
+        top: 2px;
+        left: 65px;
+    }
+    .btnBlock {
+        margin-top: 13%;
+    }
+}

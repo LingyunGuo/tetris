@@ -50,6 +50,16 @@ $(document).ready(function () {
     var canvas = $('#canvas');
     var ctx = canvas.get(0).getContext("2d");
     var coordinate;
+    function adjustSize() {
+        var winHeight = $(window).height();
+        console.log(winHeight);
+        if (winHeight < 600) {
+            console.log('?');
+            canvas.get(0).width = 200;
+            canvas.get(0).height = 400;
+            unit = 10;
+        }
+    }
 
     function init() {
         coordinate = new Array(20);
@@ -67,7 +77,11 @@ $(document).ready(function () {
         }
     }
     $(window).load(function () {
+        adjustSize();
         init();
+    });
+    $(window).resize(function () {
+        adjustSize();
     });
     // variables
     var totalScore = 0;
@@ -182,6 +196,65 @@ $(document).ready(function () {
         drawTetromino(currentType.tetrominoType);
         hitBotton();
     }
+    function onKeyPress(key) {
+        if (key === 13 && (hit === true || !currentTetromino)) {
+            hit = false;
+            createTetromino();
+        }
+        else if (currentTetromino) {
+            if (key === 32) {
+                var distanceFromBtn = 40;
+                for (i = 0; i < currentTetromino.length; i++) {
+                    var col = currentTetromino[i].x;
+                    var row = currentTetromino[i].y;
+                    for (var j = 0; j < coordinate[col].length; j++) {
+                        if (coordinate[col][j].value === 1) {
+                            var d = j - row - 1;
+                            if (d < distanceFromBtn) {
+                                distanceFromBtn = d;
+                            }
+                        }
+                    }
+                }
+                // console.log(distanceFromBtn);
+                for (var i = 0; i < currentTetromino.length; i++) {
+                    var cur = currentTetromino[i];
+                    ctx.clearRect(cur.x * unit, cur.y * unit, unit, unit);
+                    cur.y += distanceFromBtn;
+                }
+                drawTetromino(currentType.tetrominoType);
+                hitBotton();
+            }
+            else if ([1, 38, 269].indexOf(key) >= 0 && hit === false) {//up
+                rotateTetromino();
+            }
+            else if ([2, 40, 270].indexOf(key) >= 0 && hit === false) {//down
+                moveTetromino();
+            }
+            else if ([3, 4, 37, 39, 271, 272].indexOf(key) >= 0 && hit === false) {
+                checkEmtpy(key, function (move) {
+                    var cur;
+                    if ([3, 37, 271].indexOf(key) >= 0 && move.left === true) { //left
+                        for (var i = 0; i < currentTetromino.length; i++) {
+                            cur = currentTetromino[i];
+                            ctx.clearRect(cur.x * unit, cur.y * unit, unit, unit);
+                            cur.x--;
+                        }
+                    }
+                    else if ([4, 39, 272].indexOf(key) >= 0 && move.right === true) { //right
+                        for (j = 0; j < currentTetromino.length; j++) {
+                            cur = currentTetromino[j];
+                            ctx.clearRect(cur.x * unit, cur.y * unit, unit, unit);
+                            cur.x++;
+                        }
+                    }
+                    drawTetromino(currentType.tetrominoType);
+                    hitBotton();
+                });
+            }
+        }
+
+    }
     function hitBotton() {
         var curx;
         var cury;
@@ -244,11 +317,13 @@ $(document).ready(function () {
             }
         }
         if (fill.length !== 0) {
-            // console.log('fill' + fill);
+            console.log(fill);
             timer.stop(function () {
-                for (var k = fill.length - 1; k > -1; k--) {
+                // for (var k = fill.length - 1; k > -1; k--) {
+                for (var k = 0; k < fill.length; k++) {
                     // clear filled row
                     clearTetromino(fill[k]);
+                    printCoordinate();
                     // redraw tetromino
                     redrawTetromino();
                     // calculate score
@@ -270,65 +345,6 @@ $(document).ready(function () {
                 }
             }
         }
-    }
-    function horizontalMove(key) {
-        if (key === 13 && (hit === true || !currentTetromino)) {
-            hit = false;
-            createTetromino();
-        }
-        else if (currentTetromino) {
-            if (key === 32) {
-                var distanceFromBtn = 40;
-                for (i = 0; i < currentTetromino.length; i++) {
-                    var col = currentTetromino[i].x;
-                    var row = currentTetromino[i].y;
-                    for (var j = 0; j < coordinate[col].length; j++) {
-                        if (coordinate[col][j].value === 1) {
-                            var d = j - row - 1;
-                            if (d < distanceFromBtn) {
-                                distanceFromBtn = d;
-                            }
-                        }
-                    }
-                }
-                // console.log(distanceFromBtn);
-                for (var i = 0; i < currentTetromino.length; i++) {
-                    var cur = currentTetromino[i];
-                    ctx.clearRect(cur.x * unit, cur.y * unit, unit, unit);
-                    cur.y += distanceFromBtn;
-                }
-                drawTetromino(currentType.tetrominoType);
-                hitBotton();
-            }
-            else if ([1, 38, 269].indexOf(key) >= 0 && hit === false) {//up
-                rotateTetromino();
-            }
-            else if ([2, 40, 270].indexOf(key) >= 0 && hit === false) {//down
-                moveTetromino();
-            }
-            else if ([3, 4, 37, 39, 271, 272].indexOf(key) >= 0 && hit === false) {
-                checkEmtpy(key, function (move) {
-                    var cur;
-                    if ([3, 37, 271].indexOf(key) >= 0 && move.left === true) { //left
-                        for (var i = 0; i < currentTetromino.length; i++) {
-                            cur = currentTetromino[i];
-                            ctx.clearRect(cur.x * unit, cur.y * unit, unit, unit);
-                            cur.x--;
-                        }
-                    }
-                    else if ([4, 39, 272].indexOf(key) >= 0 && move.right === true) { //right
-                        for (j = 0; j < currentTetromino.length; j++) {
-                            cur = currentTetromino[j];
-                            ctx.clearRect(cur.x * unit, cur.y * unit, unit, unit);
-                            cur.x++;
-                        }
-                    }
-                    drawTetromino(currentType.tetrominoType);
-                    hitBotton();
-                });
-            }
-        }
-
     }
 
     function checkEmtpy(key, cb) {
@@ -387,24 +403,24 @@ $(document).ready(function () {
     });
     $(document).keydown(function (event) {
         if (inGame === true) {
-            horizontalMove(event.which);
+            onKeyPress(event.which);
         }
     });
     
     // function for testing purpose
-    // function printCoordinate() {
-    //     var rows = new Array(41);
-    //     for (var i = 0; i < rows.length; i++) {
-    //         rows[i] = new Array(20);
-    //     }
-    //     for (i = 0; i < coordinate.length; i++) {
-    //         for (var j = 0; j < coordinate[i].length; j++) {
-    //             rows[j][i] = coordinate[i][j].value;
-    //         }
-    //     }
-    //     for (i = 0; i < rows.length; i++) {
-    //         console.log(i + ': ' + rows[i]);
-    //     }
-    // }
+    function printCoordinate() {
+        var rows = new Array(41);
+        for (var i = 0; i < rows.length; i++) {
+            rows[i] = new Array(20);
+        }
+        for (i = 0; i < coordinate.length; i++) {
+            for (var j = 0; j < coordinate[i].length; j++) {
+                rows[j][i] = coordinate[i][j].value;
+            }
+        }
+        for (i = 0; i < rows.length; i++) {
+            console.log(i + ': ' + rows[i]);
+        }
+    }
 });
 
