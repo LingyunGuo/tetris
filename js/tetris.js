@@ -50,13 +50,15 @@ $(document).ready(function () {
     var canvas = $('#canvas');
     var ctx = canvas.get(0).getContext("2d");
     var coordinate;
+    var width = 300;
+    var height = 540;
     function adjustSize() {
         var winHeight = $(window).height();
-        console.log(winHeight);
         if (winHeight < 600) {
-            console.log('?');
+            width = 200;
+            height = 360;
             canvas.get(0).width = 200;
-            canvas.get(0).height = 400;
+            canvas.get(0).height = 360;
             unit = 10;
         }
     }
@@ -64,9 +66,9 @@ $(document).ready(function () {
     function init() {
         coordinate = new Array(20);
         for (var i = 0; i < coordinate.length; i++) {
-            var col = new Array(41);
+            var col = new Array(37);
             for (var j = 0; j < col.length; j++) {
-                if (j === 40) {
+                if (j === 36) {
                     col[j] = { value: 1 };
                 }
                 else {
@@ -88,14 +90,25 @@ $(document).ready(function () {
         $('#score2Wrap').css("display", "inline");
         $('.btnBlock').css("display", "none");
     });
-    $('#mobileClick_left').click(function () {
+    // $(document).on("mobileinit", function () {
+    //     console.log('finish loading');
+    // });
+    $('#mobileClick_left').on("tab", function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(37);
             }
-            
+
         }
     });
+    // $('#mobileClick_left').click(function () {
+    //     if (inGame === true) {
+    //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    //             onKeyPress(37);
+    //         }
+
+    //     }
+    // });
     $('#mobileClick_right').click(function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -108,7 +121,7 @@ $(document).ready(function () {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(38);
             }
-            
+
         }
     });
     $('#mobileClick_down').click(function () {
@@ -157,7 +170,7 @@ $(document).ready(function () {
         hit = false;
         totalScore = 0;
         currentTetromino = null;
-        ctx.clearRect(0, 0, 300, 600);
+        ctx.clearRect(0, 0, width, height);
         init();
         createTetromino();
         timer.run();
@@ -167,7 +180,7 @@ $(document).ready(function () {
         timer.stop(function () {
             ctx.globalAlpha = 0.4;
             ctx.fillStyle = '#E0E0E0';
-            ctx.fillRect(0, 0, 300, 600);
+            ctx.fillRect(0, 0, width, height);
             $('.btnBlock button').html("Restart");
             $('.btnBlock h3 #score').html(totalScore);
             $('.btnBlock').css("display", "block");
@@ -250,7 +263,7 @@ $(document).ready(function () {
         }
         else if (currentTetromino) {
             if (key === 32) { // space
-                var distanceFromBtn = 40;
+                var distanceFromBtn = coordinate[0].length - 1;
                 for (i = 0; i < currentTetromino.length; i++) {
                     var col = currentTetromino[i].x;
                     var row = currentTetromino[i].y;
@@ -383,7 +396,7 @@ $(document).ready(function () {
         }
     }
     function redrawTetromino() {
-        ctx.clearRect(0, 0, 300, 600);
+        ctx.clearRect(0, 0, width, height);
         for (var i = 0; i < coordinate.length; i++) {
             for (var j = 0; j < coordinate[i].length - 1; j++) {
                 if (coordinate[i][j].value === 1) {
@@ -395,34 +408,52 @@ $(document).ready(function () {
     }
 
     function checkEmtpy(key, cb) {
-        var leftMost = 19;
-        var rightMost = 0;
-        for (var i = 0; i < currentTetromino.length; i++) {
-            if (currentTetromino[i].x < leftMost) {
-                leftMost = currentTetromino[i].x;
-            }
-            else if (currentTetromino[i].x > rightMost) {
-                rightMost = currentTetromino[i].x;
-            }
-        }
+        var distanceFromLeft = coordinate.length - 1;
+        var distanceFromRight = distanceFromLeft;
         var move = { left: true, right: true };
-        for (i = 0; i < currentTetromino.length; i++) {
-            var cur = currentTetromino[i];
-            if (leftMost <= 0 || coordinate[leftMost][cur.y].value === 1) {
+        for (var i = 0; i < currentTetromino.length; i++) {
+            var col = currentTetromino[i].x;
+            var row = currentTetromino[i].y;
+            if (col === 0) {
                 move.left = false;
+                break;
             }
-            if (rightMost >= 19 || coordinate[rightMost][cur.y].value === 1) {
+            if (col === 19) {
                 move.right = false;
+                break;
+            }
+            for (var j = 0; j < coordinate.length; j++) {
+                if (coordinate[j][row].value === 1) {
+                    var d = col - j - 1;
+                    if (d < distanceFromLeft) {
+                        distanceFromLeft = d;
+                    }
+                }
+            }
+            for (j = coordinate.length - 1; j > -1; j--) {
+                if (coordinate[j][row].value === 1) {
+                    var d = j - col - 1;
+                    if (d < distanceFromRight) {
+                        distanceFromRight = d;
+                    }
+                }
             }
         }
+        if (distanceFromLeft <= 0) {
+            move.left = false;
+        }
+        if (distanceFromRight <= 0) {
+            move.right = false;
+        }
+        // console.log(move);
         return cb(move);
     }
 
     function clearTetromino(row) {
-        var newRow = new Array(40);
-        for (var i = 0; i < newRow.length; i++) {
-            newRow[i] = { value: 0 };
-        }
+        // var newRow = new Array(coordinate[0].length - 1);
+        // for (var i = 0; i < newRow.length; i++) {
+        //     newRow[i] = { value: 0 };
+        // }
         for (i = 0; i < coordinate.length; i++) {
             for (var j = row; j > 0; j--) {
                 coordinate[i][j] = coordinate[i][j - 1];

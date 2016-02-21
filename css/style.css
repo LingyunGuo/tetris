@@ -26,7 +26,7 @@ i {
 #canvasWrap {
     text-align: center;
     top: 10px;
-    height: 610px;
+    height: 550px;
 }
 
 #canvasWrap:focus {
@@ -83,7 +83,7 @@ i {
     }
 
     #canvasWrap {
-        height: 410px;
+        height: 370px;
     }
 }
 
