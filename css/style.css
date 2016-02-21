@@ -1,10 +1,12 @@
 * {
     font-family: 'Raleway', Helvetica, Arial, sans-serif!important;
 }
+
 #tetris {
     font-size: 48px!important;
     margin: 20px 0px;
 }
+
 #canvas {
     border: #CFD8DC 5px solid;
     border-radius: 5px;
@@ -30,25 +32,34 @@
     margin-top: 20%;
 }
 
+@media (min-width: 979px) {
+    .btnBlock {
+        margin-top: 13%;
+    }
+}
+
 #startGameBtn {
     display: inline;
 }
+
 #score2Wrap {
     position: relative;
-    top:5px;
+    top: 5px;
     left: 115px;
     color: #9E9E9E;
     /*display: none;*/
 }
-.alertBox{
+
+.alertBox {
     left: 0px;
     right: 0px;
-    top:40%;
+    top: 40%;
     position: absolute;
-    margin:0px auto;
+    margin: 0px auto;
     width: 250px;
     display: none;
 }
+
 .alertBox h3 {
     margin: 0px;
 }
