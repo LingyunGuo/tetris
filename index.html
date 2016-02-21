@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
     crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,100" rel="stylesheet" type="text/css" />
     <!-- [if lt IE 9]>
         <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -17,12 +18,6 @@
 <body>
     <div class="container">
         <div class="row">
-            <div id="mobileClick_left">
-
-            </div>
-            <div id="mobileClick_right">
-
-            </div>
             <div id="canvasWrap" class="col-md-12 col-sm-12 col-xs-12" tabindex="1">
                 <canvas id="canvas" width="300" height="600">
                     Your browser doesn't support HTML5 Canvas.
@@ -39,10 +34,31 @@
 
             </div>
         </div>
+        <div class="row mobileWrap">
+            <div class="mobileBtn col-md-12 col-sm-12 col-xs-12">
+                <button id="mobileClick_left" class="btn btn-default">
+                    <i class="fa fa-angle-left"></i>
+                </button>
+                <button id="mobileClick_right" class="btn btn-default">
+                    <i class="fa fa-angle-right"></i>
+                </button>
+                <button id="mobileClick_up" class="btn btn-default">
+                    <i class="fa fa-angle-up"></i>
+                </button>
+                <button id="mobileClick_down" class="btn btn-default">
+                    <i class="fa fa-angle-down"></i>
+                </button>
+                <button id="mobileClick_space" class="btn btn-default">
+                    <i class="fa fa-angle-double-down"></i>
+                </button>
+                 
+            </div>
+
+
+        </div>
     </div>
 
     <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!--<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
     crossorigin="anonymous"></script>

@@ -103,6 +103,28 @@ $(document).ready(function () {
             }
         }
     });
+    $('#mobileClick_up').click(function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(38);
+            }
+            
+        }
+    });
+    $('#mobileClick_down').click(function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(40);
+            }
+        }
+    });
+    $('#mobileClick_space').click(function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(32);
+            }
+        }
+    });
     $(document).keydown(function (event) {
         if (inGame === true) {
             onKeyPress(event.which);
@@ -227,7 +249,7 @@ $(document).ready(function () {
             createTetromino();
         }
         else if (currentTetromino) {
-            if (key === 32) {
+            if (key === 32) { // space
                 var distanceFromBtn = 40;
                 for (i = 0; i < currentTetromino.length; i++) {
                     var col = currentTetromino[i].x;
