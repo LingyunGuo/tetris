@@ -98,22 +98,22 @@ $(document).ready(function () {
 
         }
     });
-    var interval;
+    var intervalLeft;
     $('#mobileClick_left').on("taphold", function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(37);
-                interval = setInterval(function(){
+                intervalLeft = setInterval(function(){
                     onKeyPress(37);
                 },100);
             }
         }
     });
-    // $('#mobileClick_left').on("touchend", function () {
-    //     if (interval) {
-    //         clearInterval(interval);
-    //     }
-    // });
+    $('.container').on("touchend", function () {
+        if (intervalLeft) {
+            clearInterval(intervalLeft);
+        }
+    });
     // $('#mobileClick_left').click(function () {
     //     if (inGame === true) {
     //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
