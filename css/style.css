@@ -1,0 +1,42 @@
+* {
+    font-family: 'Raleway', Helvetica, Arial, sans-serif!important;
+}
+#tetris {
+    font-size: 48px!important;
+    margin: 20px 0px;
+}
+#canvas {
+    border: #CFD8DC 5px solid;
+    border-radius: 5px;
+    display: inline;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+#canvasWrap {
+    text-align: center;
+}
+
+#canvasWrap:focus {
+    outline: none;
+}
+
+.btnBlock {
+    text-align: center;
+    z-index: 100;
+    position: relative;
+    margin-top: 20%;
+}
+
+#startGameBtn {
+    display: inline;
+}
+#score2Wrap {
+    position: relative;
+    top:5px;
+    left: 115px;
+    color: #9E9E9E;
+    /*display: none;*/
+}

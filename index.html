@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tetris</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,100" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div id="canvasWrap" class="col-md-12 col-sm-12 col-xs-12" tabindex="1">
+                <canvas id="canvas" width="300" height="600">
+                    Your browser doesn't support HTML5 Canvas.
+                </canvas>
+                <h5 id="score2Wrap">Score: <span id="score2">0</span></h5>
+                <div class="btnBlock">
+                    <h1 id="tetris">Tetris</h1>
+                    <button type="button" id="startGameBtn" class="btn btn-lg btn-default">Start Game</button>
+                    <h3>Score: <span id="score">0</span></h3>
+                </div>
+
+            </div>
+            <!--<div class="col-md-6 col-sm-6 hidden-xs-down sideBlock">-->
+
+            <!--</div>-->
+        </div>
+    </div>
+
+
+
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+    <script src="./js/tetris.js"></script>
+</body>
+
+</html>
