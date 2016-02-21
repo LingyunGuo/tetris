@@ -83,6 +83,31 @@ $(document).ready(function () {
     $(window).resize(function () {
         adjustSize();
     });
+    $('#startGameBtn').click(function () {
+        startGame();
+        $('#score2Wrap').css("display", "inline");
+        $('.btnBlock').css("display", "none");
+    });
+    $('#mobileClick_left').click(function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(37);
+            }
+            
+        }
+    });
+    $('#mobileClick_right').click(function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(39);
+            }
+        }
+    });
+    $(document).keydown(function (event) {
+        if (inGame === true) {
+            onKeyPress(event.which);
+        }
+    });
     // variables
     var totalScore = 0;
     var rowScore = [10, 30, 50, 80];
@@ -395,17 +420,6 @@ $(document).ready(function () {
         // console.log('Score: ' + totalScore);
         $('#score2').html(totalScore);
     }
-
-    $('#startGameBtn').click(function () {
-        startGame();
-        $('#score2Wrap').css("display", "inline");
-        $('.btnBlock').css("display", "none");
-    });
-    $(document).keydown(function (event) {
-        if (inGame === true) {
-            onKeyPress(event.which);
-        }
-    });
     
     // function for testing purpose
     function printCoordinate() {

@@ -74,3 +74,22 @@
         margin-top: 13%;
     }
 }
+
+#mobileClick_left {
+    float: left;
+    left:0px;
+}
+#mobileClick_right {
+    float: right;
+    right:0px;
+}
+#mobileClick_left, #mobileClick_right {
+    height: 100%;
+    width:50%;
+    position: absolute;
+}
+@media (max-width:480px) {
+    #mobileClick_left, #mobileClick_right {
+        z-index: 10;
+    }
+}
