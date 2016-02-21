@@ -112,6 +112,7 @@ i {
 #mobileClick_up:focus,
 #mobileClick_down:focus,
 #mobileClick_space:focus {
+    padding-top: 4px;
     height: 30px;
     position: relative;
     top: 15px;
