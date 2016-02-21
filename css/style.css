@@ -40,3 +40,14 @@
     color: #9E9E9E;
     /*display: none;*/
 }
+.alertBox{
+    left: 0px;
+    right: 0px;
+    top:40%;
+    position: absolute;
+    margin:0px auto;
+    width: 250px;
+}
+.alertBox h3 {
+    margin: 0px;
+}

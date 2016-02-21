@@ -104,7 +104,6 @@ $(document).ready(function () {
     function stopGame() {
         inGame = false;
         timer.stop(function () {
-            console.log('Game Over');
             ctx.globalAlpha = 0.4;
             ctx.fillStyle = '#E0E0E0';
             ctx.fillRect(0, 0, 300, 600);
@@ -140,8 +139,6 @@ $(document).ready(function () {
         ctx.fillStyle = colour;
         ctx.strokeStyle = 'white';
         ctx.lineWidth = 0.5;
-        console.log(x * unit);
-        console.log(x * unit, y * unit, unit, unit);
         ctx.fillRect(x * unit, y * unit, unit, unit);
         ctx.strokeRect(x * unit + 0.5, y * unit + 0.5, unit - 1, unit - 1);
     }
@@ -178,7 +175,8 @@ $(document).ready(function () {
             }
         }
         else {
-            console.log('Error!!!');
+            stopGame();
+            $('.alertBox h3').html('Some error occur during rotation.');
         }
         drawTetromino(currentType.tetrominoType);
         hitBotton();
@@ -370,12 +368,13 @@ $(document).ready(function () {
     }
     function calculateScore(num) {
         if (num > 4) {
-            console.log('Error.');
+            stopGame();
+            $('.alertBox h3').html('Some error occur during score calculation.');
         }
         else {
             totalScore += rowScore[num - 1];
         }
-        console.log('Score: ' + totalScore);
+        // console.log('Score: ' + totalScore);
         $('#score2').html(totalScore);
     }
 
@@ -389,20 +388,21 @@ $(document).ready(function () {
             horizontalMove(event.which);
         }
     });
-
-    function printCoordinate() {
-        var rows = new Array(41);
-        for (var i = 0; i < rows.length; i++) {
-            rows[i] = new Array(20);
-        }
-        for (i = 0; i < coordinate.length; i++) {
-            for (var j = 0; j < coordinate[i].length; j++) {
-                rows[j][i] = coordinate[i][j].value;
-            }
-        }
-        for (i = 0; i < rows.length; i++) {
-            console.log(i + ': ' + rows[i]);
-        }
-    }
+    
+    // function for testing purpose
+    // function printCoordinate() {
+    //     var rows = new Array(41);
+    //     for (var i = 0; i < rows.length; i++) {
+    //         rows[i] = new Array(20);
+    //     }
+    //     for (i = 0; i < coordinate.length; i++) {
+    //         for (var j = 0; j < coordinate[i].length; j++) {
+    //             rows[j][i] = coordinate[i][j].value;
+    //         }
+    //     }
+    //     for (i = 0; i < rows.length; i++) {
+    //         console.log(i + ': ' + rows[i]);
+    //     }
+    // }
 });
 
