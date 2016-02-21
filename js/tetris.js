@@ -90,6 +90,14 @@ $(document).ready(function () {
         $('#score2Wrap').css("display", "inline");
         $('.btnBlock').css("display", "none");
     });
+    $('#mobileClick_space').on("tap", function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(32);
+            }
+
+        }
+    });
     $('#mobileClick_left').on("tap", function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -109,9 +117,75 @@ $(document).ready(function () {
             }
         }
     });
+    $('#mobileClick_up').on("tap", function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(38);
+            }
+
+        }
+    });
+    var intervalUp;
+    $('#mobileClick_up').on("taphold", function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(38);
+                intervalUp = setInterval(function(){
+                    onKeyPress(38);
+                },100);
+            }
+        }
+    });
+    $('#mobileClick_right').on("tap", function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(39);
+            }
+
+        }
+    });
+    var intervalRight;
+    $('#mobileClick_right').on("taphold", function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(39);
+                intervalRight = setInterval(function(){
+                    onKeyPress(39);
+                },100);
+            }
+        }
+    });
+    $('#mobileClick_down').on("tap", function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(40);
+            }
+
+        }
+    });
+    var intervalDown;
+    $('#mobileClick_down').on("taphold", function () {
+        if (inGame === true) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                onKeyPress(40);
+                intervalDown = setInterval(function(){
+                    onKeyPress(40);
+                },100);
+            }
+        }
+    });
     $('.container').on("touchend", function () {
         if (intervalLeft) {
             clearInterval(intervalLeft);
+        }
+        if (intervalRight) {
+            clearInterval(intervalRight);
+        }
+        if (intervalUp) {
+            clearInterval(intervalUp);
+        }
+        if (intervalDown) {
+            clearInterval(intervalDown);
         }
     });
     // $('#mobileClick_left').click(function () {
@@ -122,35 +196,35 @@ $(document).ready(function () {
 
     //     }
     // });
-    $('#mobileClick_right').click(function () {
-        if (inGame === true) {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                onKeyPress(39);
-            }
-        }
-    });
-    $('#mobileClick_up').click(function () {
-        if (inGame === true) {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                onKeyPress(38);
-            }
+    // $('#mobileClick_right').click(function () {
+    //     if (inGame === true) {
+    //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    //             onKeyPress(39);
+    //         }
+    //     }
+    // });
+    // $('#mobileClick_up').click(function () {
+    //     if (inGame === true) {
+    //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    //             onKeyPress(38);
+    //         }
 
-        }
-    });
-    $('#mobileClick_down').click(function () {
-        if (inGame === true) {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                onKeyPress(40);
-            }
-        }
-    });
-    $('#mobileClick_space').click(function () {
-        if (inGame === true) {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                onKeyPress(32);
-            }
-        }
-    });
+    //     }
+    // });
+    // $('#mobileClick_down').click(function () {
+    //     if (inGame === true) {
+    //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    //             onKeyPress(40);
+    //         }
+    //     }
+    // });
+    // $('#mobileClick_space').click(function () {
+    //     if (inGame === true) {
+    //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    //             onKeyPress(32);
+    //         }
+    //     }
+    // });
     $(document).keydown(function (event) {
         if (inGame === true) {
             onKeyPress(event.which);
