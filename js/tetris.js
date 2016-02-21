@@ -42,7 +42,7 @@ var Tetrominos = {
     }
 };
 var rotateTypes = [1, 2, 4, 4, 2, 2, 4];
-
+var speed = ['fast', 'normal', 'slow'];
 var tetrominoColour = ['#FFF59D', '#80DEEA', '#FFE0B2', '#BBDEFB', '#EF9A9A', '#E6EE9C', '#E1BEE7'];
 
 $(document).ready(function () {
@@ -55,11 +55,12 @@ $(document).ready(function () {
     function adjustSize() {
         var winHeight = $(window).height();
         if (winHeight < 600) {
-            width = 200;
-            height = 360;
-            canvas.get(0).width = 200;
-            canvas.get(0).height = 360;
-            unit = 10;
+            width = 240;
+            height = 432;
+            canvas.get(0).width = 240;
+            canvas.get(0).height = 432;
+            unit = 12;
+            $('.mobileWrap').css("width", "250px");
         }
     }
 
@@ -111,9 +112,9 @@ $(document).ready(function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(37);
-                intervalLeft = setInterval(function(){
+                intervalLeft = setInterval(function () {
                     onKeyPress(37);
-                },100);
+                }, 100);
             }
         }
     });
@@ -130,9 +131,9 @@ $(document).ready(function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(38);
-                intervalUp = setInterval(function(){
+                intervalUp = setInterval(function () {
                     onKeyPress(38);
-                },100);
+                }, 100);
             }
         }
     });
@@ -149,9 +150,9 @@ $(document).ready(function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(39);
-                intervalRight = setInterval(function(){
+                intervalRight = setInterval(function () {
                     onKeyPress(39);
-                },100);
+                }, 100);
             }
         }
     });
@@ -168,9 +169,35 @@ $(document).ready(function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(40);
-                intervalDown = setInterval(function(){
+                intervalDown = setInterval(function () {
                     onKeyPress(40);
-                },100);
+                }, 100);
+            }
+        }
+    });
+    $('#mobileClick_speed').on("tap", function () {
+        if (inGame === false) {
+            var index = speed.indexOf($('#speedValue').html());
+            index++;
+            index = index % speed.length;
+            $('#speedValue').html(speed[index]);
+            var s = (index + 1) * 300;
+            timer.set(s);
+        }
+    });
+    var pauseGame = false;
+    $('#mobileClick_pause').on("tap", function () {
+        if (inGame === true) {
+            if (pauseGame === false) {
+                timer.stop(function () {
+                    pauseGame = true;
+                    $('#mobileClick_pause i').addClass('fa-play').removeClass('fa-pause');
+                });
+            }
+            else {
+                timer.run();
+                pauseGame = false;
+                $('#mobileClick_pause i').addClass('fa-pause').removeClass('fa-play');
             }
         }
     });
@@ -270,6 +297,7 @@ $(document).ready(function () {
             ctx.fillRect(0, 0, width, height);
             $('.btnBlock button').html("Restart");
             $('.btnBlock h3 #score').html(totalScore);
+            totalScore = 0; //might cause problem
             $('.btnBlock').css("display", "block");
         });
     }
@@ -464,7 +492,6 @@ $(document).ready(function () {
             }
         }
         if (fill.length !== 0) {
-            console.log(fill);
             timer.stop(function () {
                 // for (var k = fill.length - 1; k > -1; k--) {
                 for (var k = 0; k < fill.length; k++) {

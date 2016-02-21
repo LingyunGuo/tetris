@@ -35,26 +35,37 @@
 
             </div>
         </div>
-        <div class="row mobileWrap">
-            <div class="mobileBtn col-md-12 col-sm-12 col-xs-12">
-                <button id="mobileClick_left" class="btn btn-default">
-                    <i class="fa fa-angle-left"></i>
-                </button>
-                <button id="mobileClick_right" class="btn btn-default">
-                    <i class="fa fa-angle-right"></i>
-                </button>
-                <button id="mobileClick_up" class="btn btn-default">
-                    <i class="fa fa-angle-up"></i>
-                </button>
-                <button id="mobileClick_down" class="btn btn-default">
-                    <i class="fa fa-angle-down"></i>
-                </button>
-                <button id="mobileClick_space" class="btn btn-default">
-                    <i class="fa fa-angle-double-down"></i>
-                </button>
+        <div class="row mobileRow">
+            <div class="mobileWrap">
 
+                <div class="mobilebtn mobileLeftSide col-sm-6 col-xs-6">
+                    <button id="mobileClick_up" class="btn btn-default">
+                        <i class="fa fa-rotate-right"></i>
+                    </button>
+                    <div>
+                        <button id="mobileClick_left" class="btn btn-default">
+                            <i class="fa fa-angle-left"></i>
+                        </button>
+                        <button id="mobileClick_down" class="btn btn-default">
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <button id="mobileClick_right" class="btn btn-default">
+                            <i class="fa fa-angle-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="mobilBtn mobileRightSide col-sm-6 col-xs-6">
+                    <button id="mobileClick_speed" class="btn btn-default">
+                        <span id="speedValue">Normal</span>
+                    </button>
+                    <button id="mobileClick_pause" class="btn btn-default">
+                        <i class="fa fa-pause"></i>
+                    </button>
+                    <button id="mobileClick_space" class="btn btn-default">
+                        <i class="fa fa-angle-double-down"></i>
+                    </button>
+                </div>
             </div>
-
 
         </div>
     </div>
@@ -66,6 +77,7 @@
     <script src="./js/tetris.js"></script>
     <script>
         $(document).bind('mobileinit',function(){
+            $.event.special.tap.tapholdThreshold = 1000;
             $.mobile.changePage.defaults.changeHash = false;
             $.mobile.hashListeningEnabled = false;
             $.mobile.pushStateEnabled = false;

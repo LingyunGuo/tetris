@@ -85,48 +85,111 @@ i {
     }
 
     #canvasWrap {
-        height: 370px;
+        height: 442px;
     }
 }
 
-.mobileWrap {
+.mobileRow {
     text-align: center;
+    display: none;
 }
 
-.mobileBtn {
-    /*display: inline;*/
-    width: 200px;
-    margin: 0 auto;
+.mobileWrap {
+    display: inline-block;
+    width: 310px;
+}
+
+.mobileWrap > div {
+    padding: 0px;
+}
+
+.mobileRightSide {
+    margin-top: 10px;
+}
+
+.mobileLeftSide {
+    margin-top: -7px;
+}
+
+.mobileRightSide #mobileClick_speed,
+.mobileRightSide #mobileClick_pause,
+.mobileLeftSide #mobileClick_up {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+#mobileClick_pause i,
+#mobileClick_up i {
+    font-size: 16px!important;
+}
+#mobileClick_speed,
+#mobileClick_pause,
+#mobileClick_space,
+#mobileClick_speed:hover,
+#mobileClick_pause:hover,
+#mobileClick_space:hover,
+#mobileClick_speed:focus,
+#mobileClick_pause:focus,
+#mobileClick_space:focus {
+    text-align: center;
+    height: 30px;
+    background: white!important;
+    outline: none;
+    box-shadow: none;
+    margin-right: 5px;
+}
+
+#mobileClick_space {
+    width: 95%;
+    padding-top: 5px;
+}
+
+#mobileClick_speed,
+#mobileClick_pause {
+    width: 43%;
+}
+
+#mobileClick_speed {
+    padding: 5px 0px 0px 0px;
+    float: left;
+    font-size: 10px;
+}
+
+#mobileClick_pause {
+    float: right;
+    padding-top: 0px;
+    margin-top: 6px;
 }
 
 #mobileClick_left,
 #mobileClick_right,
 #mobileClick_up,
 #mobileClick_down,
-#mobileClick_space,
 #mobileClick_left:hover,
 #mobileClick_right:hover,
 #mobileClick_up:hover,
 #mobileClick_down:hover,
-#mobileClick_space:hover,
 #mobileClick_left:focus,
 #mobileClick_right:focus,
 #mobileClick_up:focus,
-#mobileClick_down:focus,
-#mobileClick_space:focus {
-    padding: 4px 0px;
+#mobileClick_down:focus {
+    padding: 4px 0px 0px 0px;
     text-align: center;
     height: 30px;
     position: relative;
     top: 15px;
-    width: 38px;
+    width: 30%;
     background: white!important;
     outline: none;
     box-shadow: none;
-    display: none;
 }
 
 @media (max-width:480px) {
+    #mobileClick_speed,
+    #mobileClick_speed:hover,
+    #mobileClick_speed:focus,
+    #mobileClick_pause,
+    #mobileClick_pause:hover,
+    #mobileClick_pause:focus,
     #mobileClick_left,
     #mobileClick_right,
     #mobileClick_up,
@@ -144,5 +207,9 @@ i {
     #mobileClick_space:focus {
         display: inline-block;
         z-index: 10;
+    }
+
+    .mobileRow {
+        display: block;
     }
 }
