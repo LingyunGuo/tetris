@@ -93,7 +93,7 @@ $(document).ready(function () {
     // $(document).on("mobileinit", function () {
     //     console.log('finish loading');
     // });
-    $('#mobileClick_left').on("tab", function () {
+    $('#mobileClick_left').on("tap", function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(37);
