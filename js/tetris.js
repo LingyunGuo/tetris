@@ -91,7 +91,8 @@ $(document).ready(function () {
         $('#score2Wrap').css("display", "inline");
         $('.btnBlock').css("display", "none");
     });
-    $('#mobileClick_space').on("tap", function () {
+    var custom_event = $.support.touch ? "tap" : "click";
+    $('#mobileClick_space').on(custom_event, function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(32);
@@ -99,7 +100,7 @@ $(document).ready(function () {
 
         }
     });
-    $('#mobileClick_left').on("tap", function () {
+    $('#mobileClick_left').on(custom_event, function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(37);
@@ -118,7 +119,7 @@ $(document).ready(function () {
             }
         }
     });
-    $('#mobileClick_up').on("tap", function () {
+    $('#mobileClick_up').on(custom_event, function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(38);
@@ -137,7 +138,7 @@ $(document).ready(function () {
             }
         }
     });
-    $('#mobileClick_right').on("tap", function () {
+    $('#mobileClick_right').on(custom_event, function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(39);
@@ -156,7 +157,7 @@ $(document).ready(function () {
             }
         }
     });
-    $('#mobileClick_down').on("tap", function () {
+    $('#mobileClick_down').on(custom_event, function () {
         if (inGame === true) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 onKeyPress(40);
@@ -175,7 +176,7 @@ $(document).ready(function () {
             }
         }
     });
-    $('#mobileClick_speed').on("tap", function () {
+    $('#mobileClick_speed').on(custom_event, function () {
         if (inGame === false) {
             var index = speed.indexOf($('#speedValue').html());
             index++;
@@ -186,7 +187,7 @@ $(document).ready(function () {
         }
     });
     var pauseGame = false;
-    $('#mobileClick_pause').on("tap", function () {
+    $('#mobileClick_pause').on(custom_event, function () {
         if (inGame === true) {
             if (pauseGame === false) {
                 timer.stop(function () {
@@ -214,7 +215,8 @@ $(document).ready(function () {
         if (intervalDown) {
             clearInterval(intervalDown);
         }
-    });
+    }); 
+    // if tap is disabled.
     // $('#mobileClick_left').click(function () {
     //     if (inGame === true) {
     //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
