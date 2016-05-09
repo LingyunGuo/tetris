@@ -216,44 +216,6 @@ $(document).ready(function () {
             clearInterval(intervalDown);
         }
     }); 
-    // if tap is disabled.
-    // $('#mobileClick_left').click(function () {
-    //     if (inGame === true) {
-    //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    //             onKeyPress(37);
-    //         }
-
-    //     }
-    // });
-    // $('#mobileClick_right').click(function () {
-    //     if (inGame === true) {
-    //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    //             onKeyPress(39);
-    //         }
-    //     }
-    // });
-    // $('#mobileClick_up').click(function () {
-    //     if (inGame === true) {
-    //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    //             onKeyPress(38);
-    //         }
-
-    //     }
-    // });
-    // $('#mobileClick_down').click(function () {
-    //     if (inGame === true) {
-    //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    //             onKeyPress(40);
-    //         }
-    //     }
-    // });
-    // $('#mobileClick_space').click(function () {
-    //     if (inGame === true) {
-    //         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    //             onKeyPress(32);
-    //         }
-    //     }
-    // });
     $(document).keydown(function (event) {
         if (inGame === true) {
             onKeyPress(event.which);
